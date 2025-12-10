@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<title>ร้านทำผม | จองคิวออนไลน์</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body{font-family:system-ui,'Noto Sans Thai',sans-serif;margin:20px;background:#f8fafc;color:#0f172a}
+  .row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+  .chip{padding:8px 12px;border:1px solid #e5e7eb;border-radius:12px;cursor:pointer;background:#fff}
+  .chip.active{background:#111827;color:#fff;border-color:#111827}
+  .muted{color:#64748b}
+  .btn{padding:8px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;cursor:pointer}
+</style>
+</head>
+<body>
+<h2>จองคิวร้านทำผม (Single Page ใน Apps Script)</h2>
+<div class="row">
+  <button id="loadDates" class="btn">โหลดวันว่าง</button>
+  <span id="msg" class="muted"></span>
+</div>
+
+<h3>เลือกวัน</h3>
+<div id="dates" class="row"></div>
+
+<h3>เวลาว่างของ <span id="selDate" class="muted">-</span></h3>
+<div id="times" class="row"></div>
+
+<h3>ข้อมูลลูกค้า</h3>
+<div class="row">
+  <input id="name" placeholder="ชื่อ-นามสกุล"/>
+  <input id="phone" placeholder="เบอร์โทร"/>
+  <input id="email" placeholder="อีเมล (ถ้ามี)"/>
+</div>
+<textarea id="notes" rows="3" style="width:100%" placeholder="หมายเหตุ"></textarea>
+<div class="row">
+  <button id="book" class="btn">ยืนยันการจอง</button>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+let D=null, T=null;
+
+$('#loadDates').onclick = async ()=>{
+  $('#msg').textContent='กำลังโหลด...';
+  const dates = await fetch(`?action=dates`).then(r=>r.json()).catch(()=>[]);
+  const box = $('#dates'); box.innerHTML=''; $('#msg').textContent='';
+  if (!Array.isArray(dates) || !dates.length){ $('#msg').textContent='ไม่มีวันว่าง'; return; }
+  dates.forEach(d=>{
+    const b = document.createElement('button'); b.className='chip'; b.textContent=d;
+    b.onclick = async ()=>{
+      D = d; $('#selDate').textContent=d; T=null; const tbox=$('#times'); tbox.innerHTML='';
+      const times = await fetch(`?action=times&date=${encodeURIComponent(d)}`).then(r=>r.json()).catch(()=>[]);
+      if (!Array.isArray(times) || !times.length){ tbox.textContent='เต็ม/ปิดร้าน'; return; }
+      times.forEach(t=>{
+        const x = document.createElement('button'); x.className='chip'; x.textContent=t;
+        x.onclick = ()=>{ T=t; [...tbox.children].forEach(c=>c.classList.remove('active')); x.classList.add('active'); };
+        tbox.appendChild(x);
+      });
+    };
+    box.appendChild(b);
+  });
+};
+
+$('#book').onclick = async ()=>{
+  if (!D || !T){ alert('เลือกวันและเวลา'); return; }
+  const payload = {
+    customerName: $('#name').value.trim(),
+    phone: $('#phone').value.trim(),
+    customerEmail: $('#email').value.trim(),
+    notes: $('#notes').value.trim(),
+    dateStr: D, timeStr: T
+  };
+  if (!payload.customerName || !payload.phone){ alert('กรอกชื่อและเบอร์'); return; }
+  const res = await fetch(``, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(payload)
+  }).then(r=>r.json()).catch(()=>({ok:false,msg:'network'}));
+  alert(res.ok ? 'จองสำเร็จ' : ('จองไม่สำเร็จ: ' + (res.msg||'')));
+  if (res.ok) {
+    const times = await fetch(`?action=times&date=${encodeURIComponent(D)}`).then(r=>r.json());
+    const tbox=$('#times'); tbox.innerHTML='';
+    times.forEach(t=>{
+      const x=document.createElement('button'); x.className='chip'; x.textContent=t;
+      x.onclick=()=>{ T=t; [...tbox.children].forEach(c=>c.classList.remove('active')); x.classList.add('active'); };
+      tbox.appendChild(x);
+    });
+  }
+};
+</script>
+</body>
+</html>
