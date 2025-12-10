@@ -14,9 +14,9 @@
 
 ## ใช้งานแบบ Single Page ใน Apps Script
 - นำไฟล์ใน `apps_script/` ไปใส่ในโปรเจกต์ Apps Script (สร้างไฟล์ `Code.gs` และไฟล์ HTML ชื่อ `index`)
-- แก้ `SPREADSHEET_ID` ให้ชี้ไฟล์ชีทของคุณ
+- แก้ `SPREADSHEET_ID` 
 - กด Deploy → Web app → Anyone
-- เปิด `/exec` ก็ใช้งานได้เลย
+- เปิด `/exec` 
 
 ## เติมสลอตตัวอย่าง
-- รันฟังก์ชัน `seedQuick` ใน Apps Script หนึ่งครั้ง หรือเปิด `/exec?action=seed&key=MY_SECRET` (ถ้าคุณเปิดโค้ดส่วน seed ใน doGet)
+- รันฟังก์ชัน `seedQuick` ใน Apps Script หนึ่งครั้ง หรือเปิด `/exec?action=seed&key=MY_SECRET` 
