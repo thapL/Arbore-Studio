@@ -7,25 +7,56 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <header class="hero">
-      <div class="container hero-inner">
-        <div>
-          <span class="tag">Hair • Style • Care</span>
-          <h1>สวยเท่ในสไตล์คุณ — จองคิวออนไลน์</h1>
-          <p class="lead">ตรวจวันว่าง เลือกเวลา แล้วกดยืนยันได้เลย</p>
-          <div class="cta">
-            <a class="btn btn-primary" href="#booking">จองคิวตอนนี้</a>
-            <a class="btn" href="#services">บริการและราคา</a>
-          </div>
-        </div>
-        <div class="card hero-img">
-          <img
-            alt="Salon"
-            src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1400&auto=format&fit=crop"
-          />
+    <button id="themeToggle" class="theme-toggle">🌙</button>
+
+  <header class="hero">
+    <div class="container hero-inner hero-3col">
+
+      <div class="hero-col hero-logo-col">
+        <div class="hero-logo-circle">
+          <img 
+            src="./logo.jpg" 
+            alt="Salon Logo"
+            style="
+              width:200px;
+              height:200px;
+              object-fit:cover;
+              border-radius:50%;
+            "
+          >
         </div>
       </div>
-    </header>
+
+      <div class="hero-col hero-text-col">
+        <span class="tag">Hair • Style • Care</span>
+        <h3>📍 ร้านอยู่พระโขนงค่ะ<br>
+            เดินทางสะดวกมาก เพียง 900 เมตร<br>
+            จาก BTS พระโขนง<br>
+            แวะมาตัดผมได้เลยค่ะ ☁️✂️</h3>
+        <p class="lead">ตรวจวันว่าง เลือกเวลา แล้วกดยืนยันได้เลย</p>
+
+        <div class="cta">
+          <a class="btn" href="#booking">จองคิวตอนนี้</a>
+          <a class="btn" href="#services">บริการและราคา</a>
+        </div>
+      </div>
+
+      <div class="hero-col hero-slider-col">
+        <div class="card hero-img slider">
+          <div class="slide-viewport">
+            <div class="slides">
+              <img src="pn.jpg">
+              <img src="pn.jpg">
+              <img src="pn.jpg">
+            </div>
+          </div>
+          <button class="slide-btn prev">‹</button>
+          <button class="slide-btn next">›</button>
+        </div>
+      </div>
+
+    </div>
+  </header>
 
     <main class="container">
       <section id="services" class="section">
