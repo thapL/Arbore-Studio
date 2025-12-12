@@ -47,8 +47,18 @@ const book = (payload) =>
 
 function setMonthLabel(y, m) {
   const th = [
-    "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.",
-    "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.",
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค.",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
   ];
   $("#monthLabel").textContent = `${th[m]} ${y + 543}`;
 }
@@ -66,7 +76,8 @@ function renderCalendar() {
 
   setMonthLabel(viewYear, viewMonth);
 
-  for (let i = 0; i < start; i++) grid.appendChild(document.createElement("div"));
+  for (let i = 0; i < start; i++)
+    grid.appendChild(document.createElement("div"));
 
   for (let d = 1; d <= days; d++) {
     const dateObj = new Date(viewYear, viewMonth, d);
@@ -75,7 +86,9 @@ function renderCalendar() {
     el.className = "day";
     el.textContent = d;
 
-    const dateStr = `${dateObj.getFullYear()}-${pad(dateObj.getMonth() + 1)}-${pad(d)}`;
+    const dateStr = `${dateObj.getFullYear()}-${pad(
+      dateObj.getMonth() + 1
+    )}-${pad(d)}`;
 
     if (dateObj < today) el.classList.add("muted");
     else if (availableDates.has(dateStr)) {
@@ -108,7 +121,9 @@ async function selectDate(dateStr, el) {
 
   $("#selectedDate").textContent = `วันที่เลือก: ${dateStr}`;
 
-  document.querySelectorAll(".day").forEach((x) => x.classList.remove("selected"));
+  document
+    .querySelectorAll(".day")
+    .forEach((x) => x.classList.remove("selected"));
   el.classList.add("selected");
 
   const box = $("#times");
@@ -272,7 +287,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   $("#bookForm").addEventListener("submit", onSubmit);
-<<<<<<< HEAD
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -301,7 +315,4 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     reader.readAsDataURL(file);
   });
-
-=======
->>>>>>> 7a04b015e0bc916fe4c3725f7263011d3661697f
 });
