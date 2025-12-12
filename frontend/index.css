@@ -1,5 +1,9 @@
 :root {
+<<<<<<< HEAD
   --bg: #e6f3dd; 
+=======
+  --bg: #EEF3EB; 
+>>>>>>> 7a04b015e0bc916fe4c3725f7263011d3661697f
   --panel: #ffffff;   
   --border: #e5e7eb;   
   --text: #0f172a;  
@@ -62,12 +66,15 @@ html, body {
   box-shadow: var(--shadow-soft);
 }
 
+<<<<<<< HEAD
 .dark .tag {
   background: #1e293b;
   color: #e2e8f0;
   box-shadow: 0 6px 14px rgba(0,0,0,0.45);
 }
 
+=======
+>>>>>>> 7a04b015e0bc916fe4c3725f7263011d3661697f
 h1 {
   margin: 12px 0;
   font-size: clamp(28px, 4.6vw, 46px);
@@ -100,11 +107,14 @@ h1 {
 
 .btn:hover { transform: translateY(-2px); }
 
+<<<<<<< HEAD
 .btn:hover {
   background: var(--accent);
   transform: translateY(-2px);
 }
 
+=======
+>>>>>>> 7a04b015e0bc916fe4c3725f7263011d3661697f
 .btn-primary {
   background: var(--primary);
   border-color: var(--primary);
@@ -336,6 +346,7 @@ textarea { resize: vertical; }
   .hero-inner { grid-template-columns: 1fr; }
   .grid3 { grid-template-columns: 1fr; }
   .cal-wrap { grid-template-columns: 1fr; }
+<<<<<<< HEAD
 }
 
 .upload-wrap {
@@ -368,4 +379,6 @@ textarea { resize: vertical; }
   background: #1e293b;
   border-color: #334155;
   color: #fff;
+=======
+>>>>>>> 7a04b015e0bc916fe4c3725f7263011d3661697f
 }

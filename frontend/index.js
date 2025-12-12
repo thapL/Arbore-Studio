@@ -272,6 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   $("#bookForm").addEventListener("submit", onSubmit);
+<<<<<<< HEAD
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -301,4 +302,6 @@ document.addEventListener("DOMContentLoaded", () => {
     reader.readAsDataURL(file);
   });
 
+=======
+>>>>>>> 7a04b015e0bc916fe4c3725f7263011d3661697f
 });
