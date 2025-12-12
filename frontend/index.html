@@ -128,9 +128,18 @@
               <div class="upload-wrap">
                 <input type="file" id="attachImg" accept="image/*" hidden>
                 <button type="button" class="btn attach-btn" id="attachBtn">📎 แนบรูปภาพ</button>
-                <button class="btn btn" type="submit" id="submitBtn">
-                  ยืนยันการจอง
-                </button>
+              <div id="serviceModal" class="modal-overlay" aria-hidden="true">
+                <div class="modal-box">
+                  <h2>เลือกบริการ</h2>
+
+                  <div id="serviceList" class="service-list"></div>
+                  <div style="height:12px"></div>
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <button id="cancelService" class="btn">ยกเลิก</button>
+                    <button id="confirmService" class="btn btn-primary" disabled>ยืนยันการจอง</button>
+                  </div>
+                </div>
+              </div>
               </div>
               <div id="imgPreview" class="img-preview"></div>
               <div id="formMsg" class="muted"></div>
@@ -139,6 +148,7 @@
         </div>
       </section>
     </main>
+
 
     <div id="toast" class="toast"></div>
     <script src="./index.js"></script>

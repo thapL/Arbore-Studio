@@ -1,9 +1,5 @@
 :root {
-<<<<<<< HEAD
-  --bg: #e6f3dd; 
-=======
   --bg: #EEF3EB; 
->>>>>>> 7a04b015e0bc916fe4c3725f7263011d3661697f
   --panel: #ffffff;   
   --border: #e5e7eb;   
   --text: #0f172a;  
@@ -66,15 +62,12 @@ html, body {
   box-shadow: var(--shadow-soft);
 }
 
-<<<<<<< HEAD
 .dark .tag {
   background: #1e293b;
   color: #e2e8f0;
   box-shadow: 0 6px 14px rgba(0,0,0,0.45);
 }
 
-=======
->>>>>>> 7a04b015e0bc916fe4c3725f7263011d3661697f
 h1 {
   margin: 12px 0;
   font-size: clamp(28px, 4.6vw, 46px);
@@ -346,7 +339,6 @@ textarea { resize: vertical; }
   .hero-inner { grid-template-columns: 1fr; }
   .grid3 { grid-template-columns: 1fr; }
   .cal-wrap { grid-template-columns: 1fr; }
-<<<<<<< HEAD
 }
 
 .upload-wrap {
@@ -374,11 +366,16 @@ textarea { resize: vertical; }
   box-shadow: var(--shadow-card);
 }
 
-/* Dark mode */
 .dark .attach-btn {
   background: #1e293b;
   border-color: #334155;
   color: #fff;
-=======
->>>>>>> 7a04b015e0bc916fe4c3725f7263011d3661697f
 }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: none; align-items:center; justify-content:center; z-index:9999; }
+.modal-overlay.show { display:flex; }
+.modal-box { background: var(--panel); color: var(--text); padding: 22px; border-radius: 14px; width: 420px; max-width:94%; box-shadow: var(--shadow-card); }
+.service-list { display:flex; flex-direction:column; gap:10px; max-height: 320px; overflow:auto; margin:12px 0; }
+.service-item { text-align:left; padding:10px 12px; border-radius:12px; border:1px solid var(--border); background:#fff; cursor:pointer; font-weight:700; }
+.service-item:hover { background:var(--accent); }
+.service-item.active { background: var(--primary); color:#fff; border-color:var(--primary); }
