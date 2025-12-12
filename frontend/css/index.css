@@ -460,9 +460,9 @@ textarea {
   color: var(--primary);
 }
 .dark .btn-primary {
-  background: var(--primary);
-  color: var(--text);
-  border-color: var(--primary);
+  background: #1e293b;
+  border-color: #334155;
+  color: var(--primary);
 }
 .dark .hero-img {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
