@@ -296,6 +296,17 @@ h1 {
   bottom: 8px;
 }
 
+.day.selected {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.dark .day.selected {
+  background: #e5e7eb;
+  color: #0f172a;
+}
+
 .side {
   padding: 20px;
   position: sticky;
