@@ -254,7 +254,6 @@ function openServiceModal(dateStr, timeStr) {
   populateServices();
   modal.classList.add("show");
   modal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden"; // disable background scroll
 }
 
 function closeServiceModal() {
@@ -263,7 +262,6 @@ function closeServiceModal() {
   modal.setAttribute("aria-hidden", "true");
   pendingBooking = null;
   selectedServiceId = null;
-  document.body.style.overflow = ""; // restore scroll
 }
 
 async function confirmServiceAndBook() {
