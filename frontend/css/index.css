@@ -528,3 +528,38 @@ textarea {
   border-color: #334155;
   color: #fff;
 }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.4);
+  z-index: 9999;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal-box {
+  width: 480px;
+  max-width: 95%;
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  transform: translateY(6px) scale(0.98);
+  opacity: 0;
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+.modal-overlay.show .modal-box {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+@media (max-width: 560px) {
+  .modal-box { width: 92%; padding: 16px; border-radius: 12px; }
+}
