@@ -4,16 +4,26 @@
   "description": "- `apps_script/` : โค้ด Apps Script (เสิร์ฟหน้าแบบ single page ได้ในตัว) - `frontend/` : HTML/CSS/JS (โฮสต์ที่ Netlify/GitHub Pages ได้) - `netlify/functions/api.js` : Proxy → เรียก Apps Script (แก้ CORS) - `netlify.toml` : คอนฟิก Netlify",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "body-parser": "^2.2.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^4.22.1",
     "node-fetch": "^2.7.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thapL/salon-booking.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thapL/salon-booking/issues"
+  },
+  "homepage": "https://github.com/thapL/salon-booking#readme"
 }

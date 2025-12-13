@@ -22,6 +22,14 @@ let selectedDate = null;
 let selectedTime = null;
 let selectedService = null;
 
+let customerData = {
+  name: "",
+  phone: "",
+  email: "",
+  notes: "",
+  image: null
+};
+
 /* ===================== TOAST ===================== */
 function toast(msg) {
   const t = $("#toast");
@@ -61,7 +69,6 @@ function renderCalendar() {
 
   setMonthLabel(viewYear, viewMonth);
 
-  // ช่องว่างก่อนวันแรก
   for (let i = 0; i < start; i++) {
     grid.appendChild(document.createElement("div"));
   }
@@ -75,9 +82,7 @@ function renderCalendar() {
     el.className = "day";
     el.textContent = d;
 
-    if (dateObj < today) {
-      el.classList.add("muted");
-    }
+    if (dateObj < today) el.classList.add("muted");
 
     if (availableDates.has(dateStr)) {
       el.classList.add("available");
@@ -104,8 +109,7 @@ async function reloadDates() {
     const arr = await fetchDates();
     availableDates = new Set(Array.isArray(arr) ? arr : []);
     if (apiMsg) apiMsg.textContent = `พบวันว่าง ${availableDates.size} วัน`;
-  } catch (e) {
-    console.error(e);
+  } catch {
     availableDates = new Set();
     if (apiMsg) apiMsg.textContent = "โหลดวันว่างไม่สำเร็จ";
   }
@@ -123,6 +127,7 @@ function openBookingPopup(dateStr) {
   $("#bookingModal").classList.add("show");
   $("#bookingModal").setAttribute("aria-hidden", "false");
 
+  resetForm();
   loadPopupTimes(dateStr);
   renderServices();
   updateConfirmState();
@@ -131,6 +136,22 @@ function openBookingPopup(dateStr) {
 function closeBookingPopup() {
   $("#bookingModal").classList.remove("show");
   $("#bookingModal").setAttribute("aria-hidden", "true");
+}
+
+function resetForm() {
+  customerData = {
+    name: "",
+    phone: "",
+    email: "",
+    notes: "",
+    image: null
+  };
+
+  if ($("#popupName")) $("#popupName").value = "";
+  if ($("#popupPhone")) $("#popupPhone").value = "";
+  if ($("#popupEmail")) $("#popupEmail").value = "";
+  if ($("#popupNotes")) $("#popupNotes").value = "";
+  if ($("#popupImgPreview")) $("#popupImgPreview").innerHTML = "";
 }
 
 async function loadPopupTimes(dateStr) {
@@ -185,6 +206,56 @@ function updateConfirmState() {
   $("#confirmPopup").disabled = !(selectedDate && selectedTime && selectedService);
 }
 
+/* ===================== FORM / ATTACH ===================== */
+function initPopupAttach() {
+  const btn = $("#popupAttachBtn");
+  const input = $("#popupAttachImg");
+  const preview = $("#popupImgPreview");
+
+  if (!btn || !input) return;
+
+  btn.onclick = () => input.click();
+
+  input.onchange = () => {
+    const file = input.files[0];
+    if (!file) return;
+
+    customerData.image = file;
+
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(file);
+    img.style.maxWidth = "100%";
+    img.style.borderRadius = "10px";
+
+    preview.innerHTML = "";
+    preview.appendChild(img);
+  };
+}
+
+/* ===================== CONFIRM ===================== */
+$("#confirmPopup")?.addEventListener("click", () => {
+  customerData.name = $("#popupName")?.value.trim();
+  customerData.phone = $("#popupPhone")?.value.trim();
+  customerData.email = $("#popupEmail")?.value.trim();
+  customerData.notes = $("#popupNotes")?.value.trim();
+
+  if (!customerData.name || !customerData.phone) {
+    toast("กรุณากรอกชื่อและเบอร์โทร");
+    return;
+  }
+
+  const payload = {
+    date: selectedDate,
+    time: selectedTime,
+    service: selectedService,
+    customer: customerData
+  };
+
+  console.log("BOOKING DATA", payload);
+  toast("บันทึกการจองเรียบร้อย");
+  closeBookingPopup();
+});
+
 /* ===================== THEME ===================== */
 function initTheme() {
   const toggle = $("#themeToggle");
@@ -218,6 +289,7 @@ function initSlider() {
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   initSlider();
+  initPopupAttach();
 
   const now = new Date();
   viewYear = now.getFullYear();
