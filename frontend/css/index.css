@@ -613,3 +613,31 @@ textarea {
   justify-content: flex-end;
   gap: 10px;
 }
+
+.booking-rules {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.booking-rules h3 {
+  margin-top: 0;
+  font-weight: 800;
+}
+
+.rules {
+  padding-left: 18px;
+  margin: 14px 0;
+}
+
+.rules li {
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+
+.note {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: var(--accent);
+  border-radius: 14px;
+  font-size: 0.9rem;
+}
