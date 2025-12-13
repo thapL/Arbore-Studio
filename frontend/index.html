@@ -49,19 +49,12 @@
 
 <main class="container">
 
-<section id="services" class="section">
-  <h2>บริการยอดนิยม</h2>
-  <div class="grid3">
-    <div class="card svc">ตัดผม <div class="price">250฿</div></div>
-    <div class="card svc">ทำสี <div class="price">1200฿</div></div>
-    <div class="card svc">ทรีตเมนต์ <div class="price">890฿</div></div>
-  </div>
-</section>
-
 <section id="booking" class="section">
   <h2>เช็ควันว่างและจองคิว</h2>
 
   <div class="cal-wrap">
+
+    <!-- 🔹 ซ้าย: ปฏิทิน -->
     <div class="card calendar">
 
       <div class="cal-head">
@@ -71,8 +64,13 @@
       </div>
 
       <div class="cal-grid">
-        <div class="dow">อา</div><div class="dow">จ</div><div class="dow">อ</div>
-        <div class="dow">พ</div><div class="dow">พฤ</div><div class="dow">ศ</div><div class="dow">ส</div>
+        <div class="dow">อา</div>
+        <div class="dow">จ</div>
+        <div class="dow">อ</div>
+        <div class="dow">พ</div>
+        <div class="dow">พฤ</div>
+        <div class="dow">ศ</div>
+        <div class="dow">ส</div>
       </div>
 
       <div class="cal-grid" id="calGrid"></div>
@@ -83,14 +81,8 @@
 
       <div id="apiMsg" class="muted small"></div>
     </div>
-  </div>
-  <div class="cal-wrap">
-    <!-- 🔹 ปฏิทิน (ซ้าย) -->
-    <div class="card calendar">
-      ...
-    </div>
 
-    <!-- 🔹 PANEL ขวา (ใหม่ / static) -->
+    <!-- 🔹 ขวา: กติกาการจอง -->
     <div class="card side booking-rules">
       <h3>กติกาการจอง</h3>
 
@@ -102,14 +94,13 @@
       </ul>
 
       <div class="note">
-        📌 หมายเหตุ  
+        📌 หมายเหตุ
         <p>รายละเอียดเพิ่มเติมสามารถสอบถามทาง Line / โทรศัพท์</p>
       </div>
     </div>
+
   </div>
-
 </section>
-
 </main>
 
 <!-- ===== POPUP BOOKING ===== -->
