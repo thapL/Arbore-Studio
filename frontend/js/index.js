@@ -5,10 +5,123 @@ const API = {
 };
 
 const SERVICES = [
-  { id: "cut", name: "ตัดผม", price: 250 },
-  { id: "color", name: "ทำสี", price: 1200 },
-  { id: "treat", name: "ทรีตเมนต์", price: 890 }
+  {
+    category: "✂️ บริการตัดผม",
+    items: [
+      {
+        id: "haircut",
+        name: "ตัดผม (รวมสระ + เซ็ตผม)",
+        price: 800,
+        duration: "1 ชม. 30 นาที"
+      },
+      {
+        id: "bang_trim",
+        name: "ตัดหน้าม้า (ไม่รวมสระ)",
+        price: 400,
+        duration: "30 นาที"
+      },
+      {
+        id: "shampoo_style",
+        name: "สระผม + เซ็ทผม",
+        price: 400,
+        duration: "45 นาที"
+      }
+    ]
+  },
+
+  {
+    category: "🎨 ทำสีผม (ไม่ฟอก)",
+    items: [
+      {
+        id: "color_no_bleach",
+        name: "ทำสีผม (ไม่ฟอก)",
+        price: 1500,
+        duration: "2 ชม."
+      },
+      {
+        id: "root_touchup",
+        name: "เติมโคนผม (ไม่ฟอก)",
+        price: 1300,
+        duration: "1 ชม. 30 นาที"
+      }
+    ]
+  },
+
+  {
+    category: "⚡️ ฟอก & สีพิเศษ",
+    items: [
+      {
+        id: "bleach",
+        name: "ฟอกผม",
+        price: 2000,
+        duration: "3 ชม.",
+        note: "ไม่รวมลงสี"
+      },
+      {
+        id: "root_bleach",
+        name: "ฟอกโคนผม",
+        price: 1800,
+        duration: "2 ชม."
+      },
+      {
+        id: "color_on_bleach",
+        name: "ลงสีผมฟอก",
+        price: 2000,
+        duration: "1 ชม. 30 นาที"
+      },
+      {
+        id: "highlight",
+        name: "ไฮไลต์ผม (Design Color)",
+        price: 1500,
+        duration: "2 ชม.",
+        note: "ราคาเริ่มต้น 1,500++"
+      }
+    ]
+  },
+
+  {
+    category: "💆🏻‍♀️ ดูแลเส้นผม",
+    items: [
+      {
+        id: "head_spa",
+        name: "สปาหัว",
+        price: 1000,
+        duration: "1 ชม."
+      },
+      {
+        id: "treatment",
+        name: "ทรีตเมนท์",
+        price: 1000,
+        duration: "1 ชม."
+      }
+    ]
+  },
+
+  {
+    category: "🌈 Set Menu",
+    items: [
+      {
+        id: "set_color_cut",
+        name: "ทำสี (ไม่ฟอก) + ตัดผม",
+        price: 2300,
+        duration: "3 ชม."
+      },
+      {
+        id: "set_full_bleach_color",
+        name: "ฟอกทั้งหัว + ลงสี",
+        price: 4000,
+        duration: "4.5 – 5 ชม."
+      },
+      {
+        id: "set_full_bleach_color_cut",
+        name: "ฟอกทั้งหัว + ลงสี + ตัดผม",
+        price: 4800,
+        duration: "5 ชม."
+      }
+    ]
+  }
 ];
+
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => document.querySelectorAll(s);
@@ -131,6 +244,8 @@ function openBookingPopup(dateStr) {
   loadPopupTimes(dateStr);
   renderServices();
   updateConfirmState();
+
+  document.querySelector(".modal-box")?.scrollTo(0, 0);
 }
 
 function closeBookingPopup() {
@@ -147,11 +262,16 @@ function resetForm() {
     image: null
   };
 
-  if ($("#popupName")) $("#popupName").value = "";
-  if ($("#popupPhone")) $("#popupPhone").value = "";
-  if ($("#popupEmail")) $("#popupEmail").value = "";
-  if ($("#popupNotes")) $("#popupNotes").value = "";
-  if ($("#popupImgPreview")) $("#popupImgPreview").innerHTML = "";
+  $("#popupName") && ($("#popupName").value = "");
+  $("#popupPhone") && ($("#popupPhone").value = "");
+  $("#popupEmail") && ($("#popupEmail").value = "");
+  $("#popupNotes") && ($("#popupNotes").value = "");
+  $("#popupImgPreview") && ($("#popupImgPreview").innerHTML = "");
+
+  // ล้าง active service
+  $("#popupServices")
+    ?.querySelectorAll(".service-item")
+    .forEach(b => b.classList.remove("active"));
 }
 
 async function loadPopupTimes(dateStr) {
@@ -188,19 +308,45 @@ function renderServices() {
   const box = $("#popupServices");
   box.innerHTML = "";
 
-  SERVICES.forEach(s => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.textContent = `${s.name} — ${s.price}฿`;
-    b.onclick = () => {
-      selectedService = s;
-      [...box.children].forEach(x => x.classList.remove("active"));
-      b.classList.add("active");
-      updateConfirmState();
-    };
-    box.appendChild(b);
+  SERVICES.forEach(group => {
+    /* ===== หัวข้อหมวด ===== */
+    const title = document.createElement("div");
+    title.className = "service-category";
+    title.textContent = group.category;
+    box.appendChild(title);
+
+    /* ===== รายการบริการ ===== */
+    group.items.forEach(s => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "service-item";
+
+      b.innerHTML = `
+        <div class="svc-name">${s.name}</div>
+        <div class="svc-meta">
+          <span class="svc-price">${s.price.toLocaleString()}฿</span>
+          <span class="svc-time">⏱ ${s.duration}</span>
+        </div>
+        ${s.note ? `<div class="svc-note">${s.note}</div>` : ""}
+      `;
+
+      b.onclick = () => {
+        selectedService = s;
+
+        // ล้าง active ทุกปุ่ม
+        box.querySelectorAll(".service-item").forEach(x =>
+          x.classList.remove("active")
+        );
+
+        b.classList.add("active");
+        updateConfirmState();
+      };
+
+      box.appendChild(b);
+    });
   });
 }
+
 
 function updateConfirmState() {
   $("#confirmPopup").disabled = !(selectedDate && selectedTime && selectedService);
@@ -212,7 +358,7 @@ function initPopupAttach() {
   const input = $("#popupAttachImg");
   const preview = $("#popupImgPreview");
 
-  if (!btn || !input) return;
+  if (!btn || !input || !preview) return;
 
   btn.onclick = () => input.click();
 
@@ -220,14 +366,26 @@ function initPopupAttach() {
     const file = input.files[0];
     if (!file) return;
 
+    if (!file.type.startsWith("image/")) {
+      toast("กรุณาเลือกไฟล์รูปภาพเท่านั้น");
+      input.value = "";
+      return;
+    }
+
     customerData.image = file;
 
-    const img = document.createElement("img");
-    img.src = URL.createObjectURL(file);
-    img.style.maxWidth = "100%";
-    img.style.borderRadius = "10px";
-
     preview.innerHTML = "";
+
+    const img = document.createElement("img");
+    const url = URL.createObjectURL(file);
+
+    img.src = url;
+    img.style.maxWidth = "100%";
+    img.style.borderRadius = "12px";
+    img.style.marginTop = "10px";
+
+    img.onload = () => URL.revokeObjectURL(url);
+
     preview.appendChild(img);
   };
 }
@@ -289,7 +447,7 @@ function initSlider() {
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   initSlider();
-  initPopupAttach();
+  initPopupAttach(); // ✅ เรียกครั้งเดียวพอ
 
   const now = new Date();
   viewYear = now.getFullYear();
@@ -316,4 +474,24 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   $("#closePopup").onclick = closeBookingPopup;
+});
+
+function initQrPopup() {
+  const qrBtn = document.getElementById("popupQrBtn");
+  const qrModal = document.getElementById("qrModal");
+  const closeQr = document.getElementById("closeQr");
+
+  if (!qrBtn || !qrModal) return;
+
+  qrBtn.onclick = () => {
+    qrModal.classList.add("show");
+  };
+
+  closeQr.onclick = () => {
+    qrModal.classList.remove("show");
+  };
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initQrPopup();
 });

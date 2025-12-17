@@ -686,8 +686,79 @@ textarea {
   box-shadow: var(--shadow-card);
 }
 
-/* ===================== ACTIONS ===================== */
+/* ===== Attach row ===== */
+.attach-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
+/* ปุ่มรอง */
+.btn-outline {
+  background: #fff;
+  border: 1px dashed var(--border);
+  color: var(--text);
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+}
+
+/* ===== QR MODAL ===== */
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  z-index: 4000;
+}
+
+.qr-modal.show {
+  display: flex;
+}
+
+.qr-box {
+  background: var(--panel);
+  border-radius: 20px;
+  padding: 24px;
+  width: min(320px, 90%);
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  animation: fadeUp 0.25s ease;
+}
+
+.qr-box h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.qr-box img {
+  width: 350px;
+  max-width: 100%;
+  margin: 16px auto;
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+}
+
+.qr-note {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* Dark mode */
+.dark .btn-outline {
+  background: #1e293b;
+  border-color: #334155;
+  color: #fff;
+}
+
+/* ===================== ACTIONS ===================== */
 .actions {
   margin-top: 18px;
   padding-top: 14px;
@@ -821,17 +892,9 @@ textarea {
   border-color: #fecdd3;
 }
 
-.rule-note {
-  background: #e0edff;
-  border-radius: 14px;
-  padding: 12px 14px;
-  font-size: 0.9rem;
-}
-
-.rule-bank {
-  font-size: 0.9rem;
-  color: var(#000000);
-  line-height: 1.5;
+.rule-block.note {
+  background: #d5e7ff;
+  border-color: #d5e7ff;
 }
 
 /* mobile */
@@ -864,10 +927,6 @@ textarea {
   color: #000000;
 }
 
-.dark .rule-bank {
-  color: #e0edff;
-}
-
 /* ================= TEXT OUTSIDE RULE BLOCK ================= */
 
 /* Day mode (ปกติ) */
@@ -878,4 +937,163 @@ textarea {
 /* Dark mode */
 .dark .booking-rules > *:not(.rule-block):not(.rule-note) {
   color: #ffffff; /* ขาว */
+}
+
+/* ===================== POPUP SERVICES CLEAN ===================== */
+
+.popup-services {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* หัวข้อหมวด */
+.service-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.service-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+/* grid ของการ์ดบริการ */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+/* การ์ดบริการ */
+.service-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.service-card:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
+.service-card.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* ชื่อบริการ */
+.service-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+/* ราคา + เวลา */
+.service-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.service-card.active .service-meta {
+  color: #e5e7eb;
+}
+
+/* Dark mode */
+.dark .service-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .service-card:hover {
+  background: #273449;
+}
+
+.dark .service-card.active {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* =====================================================
+   🔥 HERO MOBILE FIX (CRITICAL)
+   แก้ hero พังบนมือถือ
+===================================================== */
+@media (max-width: 768px) {
+
+  .hero {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .hero-inner,
+  .hero-3col {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 22px !important;
+    text-align: center !important;
+  }
+
+  /* logo */
+  .hero-logo-col {
+    order: 1;
+  }
+
+  .hero-logo-col img {
+    width: 140px;
+    height: 140px;
+  }
+
+  /* text */
+  .hero-text-col {
+    order: 2;
+    max-width: 420px;
+  }
+
+  .hero-text-col h3 {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* tag */
+  .tag {
+    margin-bottom: 8px;
+  }
+
+  /* CTA */
+  .cta {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .cta .btn {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  /* slider */
+  .hero-slider-col {
+    order: 3;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .slider {
+    height: 220px;
+  }
 }
