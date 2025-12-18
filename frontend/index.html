@@ -17,6 +17,7 @@
 
 <!-- ===== THEME TOGGLE ===== -->
 <button id="themeToggle" class="theme-toggle">🌙</button>
+<button id="langToggle" class="theme-toggle" style="right:70px">EN</button>
 
 <!-- ================= HERO ================= -->
 <header class="hero">
@@ -33,19 +34,29 @@
 
     <!-- ข้อความ -->
     <div class="hero-text-col">
-      <span class="tag">Short Hair • Style • Care</span>
-      <p class="hero-location muted">
-        📍 พระโขนง • ใกล้ BTS 900 เมตร<br />
-        เดินทางสะดวก แวะมาได้เลย
+      <span class="tag"
+        data-th="Short Hair • Style • Care"
+        data-en="Short Hair • Style • Care">
+        Short Hair • Style • Care
+      </span>
+
+      <p class="hero-location muted"
+        data-th="📍 พระโขนง • ใกล้ BTS 900 เมตร<br>เดินทางสะดวก แวะมาได้เลย"
+        data-en="📍 Phra Khanong • 900m from BTS<br>Easy access, welcome">
       </p>
 
-      <p class="lead">
-        ตรวจวันว่าง → เลือกเวลา → ยืนยันการจอง
+      <p class="lead"
+        data-th="ตรวจวันว่าง → เลือกเวลา → ยืนยันการจอง"
+        data-en="Check availability → Choose time → Confirm booking">
       </p>
 
       <div class="cta">
-        <a href="#booking" class="btn btn-primary">จองคิวตอนนี้</a>
-        <a href="#services" class="btn">บริการและราคา</a>
+        <a href="#booking" class="btn"
+          data-th="จองคิวตอนนี้"
+          data-en="Book Now">
+        <a href="#services" class="btn"
+        data-th="บริการและราคา"
+        data-en="Services & Pricing"></a>
       </div>
     </div>
 
@@ -70,24 +81,24 @@
 
   <!-- ===== SERVICES ===== -->
   <section id="services" class="section">
-    <h2>บริการยอดนิยม</h2>
+    <h2 data-th="บริการยอดนิยม" data-en="Popular Services"></h2>
 
     <div class="grid3">
       <div class="card svc">
-        <h3>ตัดผม</h3>
-        <p class="muted">รวมสระ + เซ็ตผม</p>
+        <h3 data-th="ตัดผม" data-en="Haircut"></h3>
+        <p data-th="รวมสระ + เซ็ตผม" data-en="Wash + Styling included"></p>
         <div class="price">เริ่ม 800฿</div>
       </div>
 
       <div class="card svc">
-        <h3>ทำสี</h3>
-        <p class="muted">แฟชั่น / ธรรมชาติ</p>
+        <h3 data-th="ทำสี" data-en="Hair Coloring"></h3>
+        <p data-th="แฟชั่น / ธรรมชาติ" data-en="Fashion / Natural"></p>
         <div class="price">เริ่ม 1,500฿</div>
       </div>
 
       <div class="card svc">
-        <h3>ทรีตเมนท์</h3>
-        <p class="muted">ฟื้นฟูเส้นผม</p>
+        <h3 data-th="ทรีตเมนท์" data-en="Hair Treatment"></h3>
+        <p data-th="ฟื้นฟูเส้นผม" data-en="Hair Repair"></p>
         <div class="price">1,000฿</div>
       </div>
     </div>
@@ -95,7 +106,7 @@
 
   <!-- ===== BOOKING ===== -->
   <section id="booking" class="section">
-    <h2>เช็ควันว่างและจองคิว</h2>
+    <h2 data-th="เช็ควันว่างและจองคิว" data-en="Check Availability & Booking"></h2>
 
     <div class="cal-wrap">
 
@@ -123,22 +134,24 @@
 
       <!-- กติกา -->
       <div class="card side booking-rules">
-        <h3 class="rules-title">กติกาการจอง</h3>
-
+        <h3 class="rules-title"
+          data-th="กติกาการจอง"
+          data-en="Booking Policy">
+        </h3>
         <div class="rule-block deposit">
-          <h4>🏷️ การมัดจำ</h4>
+
+          <h4 data-th="🏷️ การมัดจำ" data-en="🏷️ Deposit Policy"></h4>
           <ul>
-            <li>ตัดผม มัดจำ 200 บาท</li>
-            <li>บริการ 1,000฿+ มัดจำ 30%</li>
-            <li>หักจากค่าบริการวันจริง</li>
+            <li data-th="ตัดผม มัดจำ 200 บาท" data-en="Haircut requires 200 THB deposit"></li>
+            <li data-th="บริการ 1,000฿+ มัดจำ 30%" data-en="Services over 1,000 THB require 30% deposit"></li>
           </ul>
         </div>
 
         <div class="rule-block late">
-          <h4>⏰ การมาสาย</h4>
+          <h4 data-th="⏰ การมาสาย" data-en="⏰ Late Arrival"></h4>
           <ul>
-            <li>เกิน 15 นาที อาจได้บริการไม่ครบ</li>
-            <li>เกิน 30 นาที ถือว่าสละคิว</li>
+            <li data-th="เกิน 15 นาที อาจได้บริการไม่ครบ" data-en="Late over 15 mins may reduce service"></li>
+            <li data-th="เกิน 30 นาที ถือว่าสละคิว" data-en="Late over 30 mins = booking cancelled"></li>
           </ul>
         </div>
 
@@ -158,7 +171,7 @@
             d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm6.5-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0zM12 9.2A2.8 2.8 0 1112 14.8 2.8 2.8 0 0112 9.2z"/>
         </svg>
 
-        <span>PINK_ARBORESTUDIO</span>
+        <span class="social-font">PINK_ARBORESTUDIO</span>
       </a>
 
         <a href="https://www.instagram.com/arbore.studio?igsh=MWhsenFyZXZ0cWxvNA%3D%3D&utm_source=qr" class="social-card instagram">
@@ -175,7 +188,7 @@
             d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm6.5-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0zM12 9.2A2.8 2.8 0 1112 14.8 2.8 2.8 0 0112 9.2z"/>
         </svg>
 
-        <span>ARBORÉ STUDIO</span>
+        <span class="social-font">ARBORÉ STUDIO</span>
       </a>
 
       <a href="https://www.tiktok.com/@arbore_studio?_r=1&_t=ZS-92K482GLYQa" class="social-card instagram">
@@ -185,7 +198,7 @@
             d="M16.5 3c.7 1.6 2 2.9 3.5 3.4V9a7.1 7.1 0 01-3.5-.9v7.1a5.2 5.2 0 11-5.2-5.2c.4 0 .7 0 1 .1v2.8a2.3 2.3 0 10 1.7 2.2V3h2.5z"/>
         </svg>
 
-        <span>ARBORÉ STUDIO</span>
+        <span class="social-font">ARBORÉ STUDIO</span>
       </a>
 
       <a href="https://lin.ee/gUfxKf0" class="social-card instagram"
@@ -196,7 +209,7 @@
             d="M12 2C6.5 2 2 5.8 2 10.6c0 2.7 1.5 5.1 3.9 6.7-.2.7-.8 2.4-.9 2.8 0 0-.1.3.2.4.3.1.5 0 .5 0 .7-.1 2.9-1.9 3.8-2.6.8.1 1.7.2 2.5.2 5.5 0 10-3.8 10-8.6S17.5 2 12 2zm-4 9.4h-1.4V7.6H8v3.8zm3.2 0H9.8V7.6h1.4v3.8zm3.4 0h-1.3l-2.1-2.8v2.8h-1.4V7.6h1.3l2.1 2.8V7.6h1.4v3.8zm3.6-2.6v1.2h-2.2v.8h2.2v1.2h-3.6V7.6h3.6v1.2h-2.2v.8h2.2z"/>
         </svg>
 
-        <span>LINE Official</span>
+        <span class="social-font">LINE Official</span>
       </a>
 
       <a href="tel:0961697954"
@@ -206,7 +219,7 @@
           <path fill="#2563eb"
             d="M6.6 10.8c1.5 3 3.9 5.4 6.9 6.9l2.3-2.3c.3-.3.8-.4 1.2-.3 1.3.4 2.7.6 4.1.6.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.6 22.2 1.8 13.4 1.8 2.9 1.8 2.2 2.3 1.7 3 1.7h3.7c.7 0 1.2.5 1.2 1.2 0 1.4.2 2.8.6 4.1.1.4 0 .9-.3 1.2L6.6 10.8z"/>
         </svg>
-        <span>โทรสอบถาม : 0961697954</span>
+        <span class="social-font" data-th="โทรสอบถาม : 0961697954" data-en="Call us: 096-169-7954"></span>
       </a>
 
     </div>
@@ -219,42 +232,43 @@
 <div id="bookingModal" class="modal">
   <div class="modal-box">
 
-    <h2 id="popupDate">วันที่</h2>
+    <h2 id="popupDate" data-th="วันที่" data-en="Date"></h2>
 
     <div class="section">
-      <h3>เลือกเวลา</h3>
+      <h3 data-th="เลือกเวลา" data-en="Select Time"></h3>
+
       <div id="popupTimes" class="popup-times"></div>
     </div>
 
     <div class="section">
-      <h3>เลือกบริการ</h3>
+      <h3 data-th="เลือกบริการ" data-en="Select Service"></h3>
       <div id="popupServices" class="popup-services"></div>
     </div>
 
     <div class="section popup-form">
       <div class="form-field">
-        <label>ชื่อ–นามสกุล</label>
+        <label data-th="ชื่อ–นามสกุล" data-en="Full Name"></label>
         <input id="popupName" />
       </div>
 
       <div class="form-field">
-        <label>เบอร์โทร</label>
+        <label data-th="เบอร์โทร" data-en="Phone Number"></label>
         <input id="popupPhone" type="tel" />
       </div>
 
       <div class="form-field">
-        <label>อีเมล</label>
+        <label data-th="อีเมล" data-en="Email"></label>
         <input id="popupEmail" type="email" />
       </div>
 
       <div class="form-field">
-        <label>หมายเหตุ</label>
+        <label data-th="หมายเหตุ" data-en="Notes"></label>
         <textarea id="popupNotes"></textarea>
       </div>
 
       <div class="attach-row">
-        <button id="popupAttachBtn" class="btn">📎 แนบสลิป</button>
-        <button id="popupQrBtn" class="btn btn-outline">💳 สแกนจ่ายเงิน</button>
+        <button id="popupAttachBtn" class="btn"data-th="📎 แนบสลิป" data-en="📎 Upload Slip"></button>
+        <button id="popupQrBtn" class="btn btn-outline" data-th="💳 สแกนจ่ายเงิน" data-en="💳 Scan to Pay"></button>
         <input id="popupAttachImg" type="file" accept="image/*" hidden />
       </div>
 
@@ -262,10 +276,8 @@
     </div>
 
     <div class="actions">
-      <button id="closePopup" class="btn">ยกเลิก</button>
-      <button id="confirmPopup" class="btn btn-primary" disabled>
-        ยืนยันการจอง
-      </button>
+      <button id="closePopup" class="btn" data-th="ยกเลิก" data-en="Cancel"></button>
+      <button id="confirmPopup" class="btn btn-primary" disabled data-th="ยืนยันการจอง" data-en="Confirm Booking"></button>
     </div>
 
   </div>
@@ -274,7 +286,8 @@
 <!-- ================= QR MODAL ================= -->
 <div id="qrModal" class="qr-modal">
   <div class="qr-box">
-    <h3>สแกนเพื่อชำระเงิน</h3>
+    <h3 data-th="สแกนเพื่อชำระเงิน" data-en="Scan to Pay"></h3>
+    <button data-th="ปิด" data-en="Close"></button>
     <img src="img/QR.jpg" alt="QR Payment" />
     <button id="closeQr" class="btn btn-primary">ปิด</button>
   </div>

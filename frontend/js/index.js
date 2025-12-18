@@ -473,3 +473,27 @@ document.addEventListener("DOMContentLoaded", () => {
   initQrPopup();
 });
 
+/* ===================== LANGUAGE TOGGLE ===================== */
+let currentLang = "th";
+
+const langBtn = document.getElementById("langToggle");
+
+function applyLanguage(lang) {
+  document.querySelectorAll("[data-th]").forEach(el => {
+    el.innerHTML = el.dataset[lang];
+  });
+
+  langBtn.textContent = lang === "th" ? "EN" : "TH";
+  currentLang = lang;
+}
+
+// ✅ โหลดภาษาไทยทันทีเมื่อหน้าเว็บเสร็จ
+document.addEventListener("DOMContentLoaded", () => {
+  applyLanguage("th");
+});
+
+// ✅ ปุ่มสลับภาษา
+langBtn.addEventListener("click", () => {
+  applyLanguage(currentLang === "th" ? "en" : "th");
+});
+

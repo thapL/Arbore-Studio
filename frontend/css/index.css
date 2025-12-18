@@ -1149,7 +1149,7 @@ textarea {
 /* ===== DARK MODE ===== */
 .dark .social-card {
   background: #1e293b;
-  border-color: #334155;
+  border-color: #f6f8fa;
   color: #f1f5f9;
 }
 
@@ -1192,4 +1192,8 @@ textarea {
 
 .social-card svg {
   margin-right: 12px;
+}
+
+.dark .social-font {
+  color: #f6f8fa;
 }
