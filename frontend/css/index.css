@@ -1175,3 +1175,21 @@ textarea {
 .social-card.line:hover {
   background: #06c75510;
 }
+
+.social-card.phone {
+  border-color: #f8fafc;
+}
+
+.social-card.phone:hover {
+  background: #2563eb10;
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.social-card svg {
+  margin-right: 12px;
+}

@@ -49,23 +49,13 @@ const SERVICES = [
         id: "bleach",
         name: "ฟอกผม",
         price: 2000,
-        note: "ไม่รวมลงสี"
-      },
-      {
-        id: "root_bleach",
-        name: "ฟอกโคนผม",
-        price: 1800,
-      },
-      {
-        id: "color_on_bleach",
-        name: "ลงสีผมฟอก",
-        price: 2000,
+        note: "ติดต่อร้านก่อนจอง"
       },
       {
         id: "highlight",
         name: "ไฮไลต์ผม (Design Color)",
-        price: 1500,
-        note: "ราคาเริ่มต้น 1,500++"
+        price: "เริ่มต้น 1500",
+        note: "ติดต่อร้านก่อนจอง"
       }
     ]
   },
@@ -98,11 +88,13 @@ const SERVICES = [
         id: "set_full_bleach_color",
         name: "ฟอกทั้งหัว + ลงสี",
         price: 4000,
+        note: "ติดต่อร้านก่อนจอง"
       },
       {
         id: "set_full_bleach_color_cut",
         name: "ฟอกทั้งหัว + ลงสี + ตัดผม",
         price: 4800,
+        note: "ติดต่อร้านก่อนจอง"
       }
     ]
   }
@@ -480,3 +472,4 @@ function initQrPopup() {
 document.addEventListener("DOMContentLoaded", () => {
   initQrPopup();
 });
+
