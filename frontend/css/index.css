@@ -1103,3 +1103,87 @@ textarea {
     height: 220px;
   }
 }
+
+/* ===================== BOOKING SOCIAL ===================== */
+
+.booking-social {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+/* กล่องแต่ละอัน */
+.social-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 999px;
+  background: #f7fbf4;
+  border: 2px solid #cfe4c9;
+  text-decoration: none;
+  font-weight: 700;
+  color: #2f3e2f;
+  transition: all 0.18s ease;
+}
+
+/* hover */
+.social-card:hover {
+  transform: translateY(-2px);
+  background: #edf7e8;
+}
+
+/* icon */
+.social-card img {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+/* text */
+.social-card span {
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+/* TikTok แยกนิดหน่อย */
+.social-card.tiktok {
+  background: #f8fafc;
+  border-color: #d8dde3;
+}
+
+/* ===== DARK MODE ===== */
+.dark .social-card {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+.dark .social-card:hover {
+  background: #273449;
+}
+
+/* SVG ICON */
+.social-card .icon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+/* TikTok สีดำ / ขาวอัตโนมัติ */
+.social-card.tiktok {
+  color: #111;
+}
+
+.dark .social-card.tiktok {
+  color: #f8fafc;
+}
+
+.social-card.line {
+  border-color: #06c755;
+}
+
+.social-card.line:hover {
+  background: #06c75510;
+}

@@ -12,19 +12,16 @@ const SERVICES = [
         id: "haircut",
         name: "ตัดผม (รวมสระ + เซ็ตผม)",
         price: 800,
-        duration: "1 ชม. 30 นาที"
       },
       {
         id: "bang_trim",
         name: "ตัดหน้าม้า (ไม่รวมสระ)",
         price: 400,
-        duration: "30 นาที"
       },
       {
         id: "shampoo_style",
         name: "สระผม + เซ็ทผม",
         price: 400,
-        duration: "45 นาที"
       }
     ]
   },
@@ -36,13 +33,11 @@ const SERVICES = [
         id: "color_no_bleach",
         name: "ทำสีผม (ไม่ฟอก)",
         price: 1500,
-        duration: "2 ชม."
       },
       {
         id: "root_touchup",
         name: "เติมโคนผม (ไม่ฟอก)",
         price: 1300,
-        duration: "1 ชม. 30 นาที"
       }
     ]
   },
@@ -54,26 +49,22 @@ const SERVICES = [
         id: "bleach",
         name: "ฟอกผม",
         price: 2000,
-        duration: "3 ชม.",
         note: "ไม่รวมลงสี"
       },
       {
         id: "root_bleach",
         name: "ฟอกโคนผม",
         price: 1800,
-        duration: "2 ชม."
       },
       {
         id: "color_on_bleach",
         name: "ลงสีผมฟอก",
         price: 2000,
-        duration: "1 ชม. 30 นาที"
       },
       {
         id: "highlight",
         name: "ไฮไลต์ผม (Design Color)",
         price: 1500,
-        duration: "2 ชม.",
         note: "ราคาเริ่มต้น 1,500++"
       }
     ]
@@ -86,13 +77,11 @@ const SERVICES = [
         id: "head_spa",
         name: "สปาหัว",
         price: 1000,
-        duration: "1 ชม."
       },
       {
         id: "treatment",
         name: "ทรีตเมนท์",
         price: 1000,
-        duration: "1 ชม."
       }
     ]
   },
@@ -104,19 +93,16 @@ const SERVICES = [
         id: "set_color_cut",
         name: "ทำสี (ไม่ฟอก) + ตัดผม",
         price: 2300,
-        duration: "3 ชม."
       },
       {
         id: "set_full_bleach_color",
         name: "ฟอกทั้งหัว + ลงสี",
         price: 4000,
-        duration: "4.5 – 5 ชม."
       },
       {
         id: "set_full_bleach_color_cut",
         name: "ฟอกทั้งหัว + ลงสี + ตัดผม",
         price: 4800,
-        duration: "5 ชม."
       }
     ]
   }
@@ -325,7 +311,6 @@ function renderServices() {
         <div class="svc-name">${s.name}</div>
         <div class="svc-meta">
           <span class="svc-price">${s.price.toLocaleString()}฿</span>
-          <span class="svc-time">⏱ ${s.duration}</span>
         </div>
         ${s.note ? `<div class="svc-note">${s.note}</div>` : ""}
       `;
