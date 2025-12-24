@@ -289,14 +289,22 @@ h1 {
   border-color: var(--accent-dark);
   transform: translateY(-2px);
 }
+
 .day.available::after {
   content: "";
   width: 6px;
   height: 6px;
-  background: var(--primary);
-  border-radius: 999px;
+  border-radius: 50%;
+  background: #2563eb;
   position: absolute;
-  bottom: 0.2rem;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dark .day.available::after {
+  background: #22d3ee;
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.9);
 }
 
 .day.selected {
@@ -374,11 +382,17 @@ textarea {
   font-size: 0.9rem;
   margin-top: 8px;
 }
+
 .legend .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: var(--primary);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2563eb;
+}
+
+.dark .legend .dot {
+  background: #22d3ee;
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.8);
 }
 
 .toast {
