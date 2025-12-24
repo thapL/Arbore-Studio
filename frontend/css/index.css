@@ -200,7 +200,7 @@ h1 {
 }
 
 .section {
-  padding: 40px 0;
+  padding: 24px 0;
 }
 
 .grid3 {
@@ -1196,4 +1196,7 @@ textarea {
 
 .dark .social-font {
   color: #f6f8fa;
+}
+.padding-0 {
+  padding: 0 !important;
 }

@@ -1,7 +1,7 @@
 /* ===================== CONFIG ===================== */
 const API = {
   dates: "/api/dates",
-  times: (d) => `/api/times?date=${encodeURIComponent(d)}`
+  times: (d) => `/api/times?date=${encodeURIComponent(d)}`,
 };
 
 const SERVICES = [
@@ -22,8 +22,8 @@ const SERVICES = [
         id: "shampoo_style",
         name: "สระผม + เซ็ทผม",
         price: 400,
-      }
-    ]
+      },
+    ],
   },
 
   {
@@ -38,8 +38,8 @@ const SERVICES = [
         id: "root_touchup",
         name: "เติมโคนผม (ไม่ฟอก)",
         price: 1300,
-      }
-    ]
+      },
+    ],
   },
 
   {
@@ -49,15 +49,15 @@ const SERVICES = [
         id: "bleach",
         name: "ฟอกผม",
         price: 2000,
-        note: "ติดต่อร้านก่อนจอง"
+        note: "ติดต่อร้านก่อนจอง",
       },
       {
         id: "highlight",
         name: "ไฮไลต์ผม (Design Color)",
         price: "เริ่มต้น 1500",
-        note: "ติดต่อร้านก่อนจอง"
-      }
-    ]
+        note: "ติดต่อร้านก่อนจอง",
+      },
+    ],
   },
 
   {
@@ -72,8 +72,8 @@ const SERVICES = [
         id: "treatment",
         name: "ทรีตเมนท์",
         price: 1000,
-      }
-    ]
+      },
+    ],
   },
 
   {
@@ -88,18 +88,17 @@ const SERVICES = [
         id: "set_full_bleach_color",
         name: "ฟอกทั้งหัว + ลงสี",
         price: 4000,
-        note: "ติดต่อร้านก่อนจอง"
+        note: "ติดต่อร้านก่อนจอง",
       },
       {
         id: "set_full_bleach_color_cut",
         name: "ฟอกทั้งหัว + ลงสี + ตัดผม",
         price: 4800,
-        note: "ติดต่อร้านก่อนจอง"
-      }
-    ]
-  }
+        note: "ติดต่อร้านก่อนจอง",
+      },
+    ],
+  },
 ];
-
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => document.querySelectorAll(s);
@@ -118,7 +117,7 @@ let customerData = {
   phone: "",
   email: "",
   notes: "",
-  image: null
+  image: null,
 };
 
 /* ===================== TOAST ===================== */
@@ -142,7 +141,20 @@ const fetchTimes = (d) => j(API.times(d));
 
 /* ===================== CALENDAR ===================== */
 function setMonthLabel(y, m) {
-  const th = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+  const th = [
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค.",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
+  ];
   $("#monthLabel").textContent = `${th[m]} ${y + 543}`;
 }
 
@@ -156,7 +168,7 @@ function renderCalendar() {
   const days = new Date(viewYear, viewMonth + 1, 0).getDate();
 
   const today = new Date();
-  today.setHours(0,0,0,0);
+  today.setHours(0, 0, 0, 0);
 
   setMonthLabel(viewYear, viewMonth);
 
@@ -166,7 +178,9 @@ function renderCalendar() {
 
   for (let d = 1; d <= days; d++) {
     const dateObj = new Date(viewYear, viewMonth, d);
-    const dateStr = `${dateObj.getFullYear()}-${pad(dateObj.getMonth()+1)}-${pad(d)}`;
+    const dateStr = `${dateObj.getFullYear()}-${pad(
+      dateObj.getMonth() + 1
+    )}-${pad(d)}`;
 
     const el = document.createElement("button");
     el.type = "button";
@@ -178,7 +192,7 @@ function renderCalendar() {
     if (availableDates.has(dateStr)) {
       el.classList.add("available");
       el.onclick = () => {
-        $$(".day").forEach(x => x.classList.remove("selected"));
+        $$(".day").forEach((x) => x.classList.remove("selected"));
         el.classList.add("selected");
         openBookingPopup(dateStr);
       };
@@ -237,7 +251,7 @@ function resetForm() {
     phone: "",
     email: "",
     notes: "",
-    image: null
+    image: null,
   };
 
   $("#popupName") && ($("#popupName").value = "");
@@ -249,7 +263,7 @@ function resetForm() {
   // ล้าง active service
   $("#popupServices")
     ?.querySelectorAll(".service-item")
-    .forEach(b => b.classList.remove("active"));
+    .forEach((b) => b.classList.remove("active"));
 }
 
 async function loadPopupTimes(dateStr) {
@@ -265,13 +279,13 @@ async function loadPopupTimes(dateStr) {
       return;
     }
 
-    times.forEach(t => {
+    times.forEach((t) => {
       const b = document.createElement("button");
       b.type = "button";
       b.textContent = t;
       b.onclick = () => {
         selectedTime = t;
-        [...box.children].forEach(x => x.classList.remove("active"));
+        [...box.children].forEach((x) => x.classList.remove("active"));
         b.classList.add("active");
         updateConfirmState();
       };
@@ -286,7 +300,7 @@ function renderServices() {
   const box = $("#popupServices");
   box.innerHTML = "";
 
-  SERVICES.forEach(group => {
+  SERVICES.forEach((group) => {
     /* ===== หัวข้อหมวด ===== */
     const title = document.createElement("div");
     title.className = "service-category";
@@ -294,7 +308,7 @@ function renderServices() {
     box.appendChild(title);
 
     /* ===== รายการบริการ ===== */
-    group.items.forEach(s => {
+    group.items.forEach((s) => {
       const b = document.createElement("button");
       b.type = "button";
       b.className = "service-item";
@@ -311,9 +325,9 @@ function renderServices() {
         selectedService = s;
 
         // ล้าง active ทุกปุ่ม
-        box.querySelectorAll(".service-item").forEach(x =>
-          x.classList.remove("active")
-        );
+        box
+          .querySelectorAll(".service-item")
+          .forEach((x) => x.classList.remove("active"));
 
         b.classList.add("active");
         updateConfirmState();
@@ -324,9 +338,12 @@ function renderServices() {
   });
 }
 
-
 function updateConfirmState() {
-  $("#confirmPopup").disabled = !(selectedDate && selectedTime && selectedService);
+  $("#confirmPopup").disabled = !(
+    selectedDate &&
+    selectedTime &&
+    selectedService
+  );
 }
 
 /* ===================== FORM / ATTACH ===================== */
@@ -368,7 +385,18 @@ function initPopupAttach() {
 }
 
 /* ===================== CONFIRM ===================== */
-$("#confirmPopup")?.addEventListener("click", () => {
+async function postJSON(url, body) {
+  const r = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data?.msg || `HTTP ${r.status}`);
+  return data;
+}
+
+$("#confirmPopup")?.addEventListener("click", async () => {
   customerData.name = $("#popupName")?.value.trim();
   customerData.phone = $("#popupPhone")?.value.trim();
   customerData.email = $("#popupEmail")?.value.trim();
@@ -379,16 +407,51 @@ $("#confirmPopup")?.addEventListener("click", () => {
     return;
   }
 
+  let slipDataUrl = "";
+  try {
+    if (customerData.image) {
+      // กันไฟล์ใหญ่มาก
+      const maxMB = 2;
+      if (customerData.image.size > maxMB * 1024 * 1024) {
+        toast(`รูปใหญ่เกิน ${maxMB}MB กรุณาเลือกรูปที่เล็กลง`);
+        return;
+      }
+      slipDataUrl = await fileToDataUrl(customerData.image);
+    }
+  } catch (e) {
+    console.error(e);
+    toast("อ่านไฟล์รูปไม่สำเร็จ");
+    return;
+  }
+
   const payload = {
     date: selectedDate,
     time: selectedTime,
-    service: selectedService,
-    customer: customerData
+    customerName: customerData.name,
+    phone: customerData.phone,
+    email: customerData.email,
+    notes: customerData.notes,
+    serviceName: selectedService?.name,
+    amount: Number(selectedService?.price || 0),
+    slipDataUrl,
   };
 
-  console.log("BOOKING DATA", payload);
-  toast("บันทึกการจองเรียบร้อย");
-  closeBookingPopup();
+  try {
+    $("#confirmPopup").disabled = true;
+    toast("กำลังบันทึก...");
+
+    const res = await postJSON("/api/book", payload);
+
+    console.log("BOOK OK:", res);
+    toast("บันทึกการจองเรียบร้อย");
+    closeBookingPopup();
+    await reloadDates();
+  } catch (err) {
+    console.error(err);
+    toast(`บันทึกไม่สำเร็จ: ${err.message}`);
+  } finally {
+    $("#confirmPopup").disabled = false;
+  }
 });
 
 /* ===================== THEME ===================== */
@@ -479,7 +542,7 @@ let currentLang = "th";
 const langBtn = document.getElementById("langToggle");
 
 function applyLanguage(lang) {
-  document.querySelectorAll("[data-th]").forEach(el => {
+  document.querySelectorAll("[data-th]").forEach((el) => {
     el.innerHTML = el.dataset[lang];
   });
 
@@ -497,3 +560,12 @@ langBtn.addEventListener("click", () => {
   applyLanguage(currentLang === "th" ? "en" : "th");
 });
 
+/* ===================== SAVE IMAGE SLIP ===================== */
+function fileToDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const fr = new FileReader();
+    fr.onload = () => resolve(String(fr.result || ""));
+    fr.onerror = reject;
+    fr.readAsDataURL(file);
+  });
+}
