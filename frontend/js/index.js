@@ -476,11 +476,13 @@ $("#confirmPopup")?.addEventListener("click", async () => {
 
     // ✅ ส่งชื่อบริการให้ Apps Script (ของคุณอ่าน styleName/serviceName ได้ถ้าแก้ฝั่ง script แล้ว)
     serviceName: selectedService?.name,
-    amount: getPriceNumber(selectedService?.price),
+    amount: Number(
+      String(selectedService?.price || 0).replace(/[^0-9]/g, "")
+      ),
 
     slipDataUrl,
   };
-
+let success = false;
   try {
   $("#confirmPopup").disabled = true;
 
@@ -660,3 +662,18 @@ function clearPopupMessage() {
   box.textContent = "";
   box.className = "popup-message hidden";
 }
+
+const i18n = {
+  bookingFail: {
+    th: "จองคิวไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
+    en: "Booking failed. Please try again."
+  },
+  bookingSuccess: {
+    th: "จองคิวสำเร็จ",
+    en: "Booking successful"
+  },
+  bookingLoad: {
+    th: "กำลังบันทึก...",
+    en: "Booking Loading..."
+  }
+};
