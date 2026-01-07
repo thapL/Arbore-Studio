@@ -482,21 +482,50 @@ $("#confirmPopup")?.addEventListener("click", async () => {
   };
 
   try {
-    $("#confirmPopup").disabled = true;
-    toast("กำลังบันทึก...");
+  $("#confirmPopup").disabled = true;
 
-    const res = await postJSON("/api/book", payload);
+  // ล้างข้อความเก่า
+  clearPopupMessage();
 
-    // console.log("BOOK OK:", res);
-    toast("บันทึกการจองเรียบร้อย");
+  // แสดงสถานะกำลังโหลด (ใน popup)
+  showPopupMessage(
+    "info",
+    i18n.bookingLoad[currentLang]
+  );
+
+  const res = await postJSON("/api/book", payload);
+
+  console.log("BOOK OK:", res);
+
+  // ✅ สำเร็จ
+  showPopupMessage(
+    "success",
+    i18n.bookingSuccess[currentLang]
+  );
+
+  success = true;
+
+  // ปิด popup หลังจากโชว์ข้อความ
+  setTimeout(async () => {
     closeBookingPopup();
     await reloadDates();
-  } catch (err) {
-    console.error(err);
-    toast(`บันทึกไม่สำเร็จ: ${err.message}`);
-  } finally {
+  }, 1200);
+
+} catch (err) {
+  console.error(err);
+
+  // ❌ ไม่สำเร็จ (2 ภาษา)
+  const msg =
+    i18n.bookingFail[currentLang] ||
+    "Booking failed";
+
+  showPopupMessage("error", msg);
+
+} finally {
+  if (!success) {
     $("#confirmPopup").disabled = false;
   }
+}
 });
 
 /* ===================== THEME ===================== */
@@ -610,3 +639,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   $("#closePopup").onclick = closeBookingPopup;
 });
+
+function showPopupMessage(type, text) {
+  console.log("SHOW POPUP MESSAGE:", type, text);
+
+  const box = document.getElementById("popupMessage");
+  if (!box) {
+    console.error("popupMessage not found");
+    return;
+  }
+
+  box.className = `popup-message ${type}`;
+  box.textContent = text;
+  box.classList.remove("hidden");
+}
+
+function clearPopupMessage() {
+  const box = document.getElementById("popupMessage");
+  if (!box) return;
+  box.textContent = "";
+  box.className = "popup-message hidden";
+}
