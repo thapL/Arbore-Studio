@@ -1,6 +1,6 @@
 /* ===================== CONFIG ===================== */
 const GAS_EXEC =
-  "https://script.google.com/macros/s/AKfycbyzZFgiLAnKJ2nd1Mg7OdtXyMR27TV-C0_FDYLR9FR3wlIeIqGij_woIhCWg_psSW0q/exec";
+  "https://script.google.com/macros/s/AKfycbyNBTng1MJVUrDCCDmTd-HCfNlZV84Oz217jtbv4qQSL2NWfmkGZkUmwwS4vx4iAG54/exec";
 
 const API = {
   dates: `${GAS_EXEC}?action=dates`,
@@ -479,58 +479,46 @@ $("#confirmPopup")?.addEventListener("click", async () => {
 
     // ✅ ส่งชื่อบริการให้ Apps Script (ของคุณอ่าน styleName/serviceName ได้ถ้าแก้ฝั่ง script แล้ว)
     serviceName: selectedService?.name,
-    amount: Number(
-      String(selectedService?.price || 0).replace(/[^0-9]/g, "")
-      ),
+    amount: Number(String(selectedService?.price || 0).replace(/[^0-9]/g, "")),
 
     slipDataUrl,
   };
-let success = false;
+  let success = false;
   try {
-  $("#confirmPopup").disabled = true;
+    $("#confirmPopup").disabled = true;
 
-  // ล้างข้อความเก่า
-  clearPopupMessage();
+    // ล้างข้อความเก่า
+    clearPopupMessage();
 
-  // แสดงสถานะกำลังโหลด (ใน popup)
-  showPopupMessage(
-    "info",
-    i18n.bookingLoad[currentLang]
-  );
+    // แสดงสถานะกำลังโหลด (ใน popup)
+    showPopupMessage("info", i18n.bookingLoad[currentLang]);
 
-  const res = await postJSON("/api/book", payload);
+    const res = await postJSON("/api/book", payload);
 
-  console.log("BOOK OK:", res);
+    console.log("BOOK OK:", res);
 
-  // ✅ สำเร็จ
-  showPopupMessage(
-    "success",
-    i18n.bookingSuccess[currentLang]
-  );
+    // ✅ สำเร็จ
+    showPopupMessage("success", i18n.bookingSuccess[currentLang]);
 
-  success = true;
+    success = true;
 
-  // ปิด popup หลังจากโชว์ข้อความ
-  setTimeout(async () => {
-    closeBookingPopup();
-    await reloadDates();
-  }, 1200);
+    // ปิด popup หลังจากโชว์ข้อความ
+    setTimeout(async () => {
+      closeBookingPopup();
+      await reloadDates();
+    }, 1200);
+  } catch (err) {
+    console.error(err);
 
-} catch (err) {
-  console.error(err);
+    // ❌ ไม่สำเร็จ (2 ภาษา)
+    const msg = i18n.bookingFail[currentLang] || "Booking failed";
 
-  // ❌ ไม่สำเร็จ (2 ภาษา)
-  const msg =
-    i18n.bookingFail[currentLang] ||
-    "Booking failed";
-
-  showPopupMessage("error", msg);
-
-} finally {
-  if (!success) {
-    $("#confirmPopup").disabled = false;
+    showPopupMessage("error", msg);
+  } finally {
+    if (!success) {
+      $("#confirmPopup").disabled = false;
+    }
   }
-}
 });
 
 /* ===================== THEME ===================== */
@@ -670,14 +658,14 @@ function clearPopupMessage() {
 const i18n = {
   bookingFail: {
     th: "จองคิวไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
-    en: "Booking failed. Please try again."
+    en: "Booking failed. Please try again.",
   },
   bookingSuccess: {
     th: "จองคิวสำเร็จ",
-    en: "Booking successful"
+    en: "Booking successful",
   },
   bookingLoad: {
     th: "กำลังบันทึก...",
-    en: "Booking Loading..."
-  }
+    en: "Booking Loading...",
+  },
 };
